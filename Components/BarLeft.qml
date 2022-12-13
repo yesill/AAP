@@ -17,32 +17,18 @@ Rectangle{
 
         ListView{
             spacing: 20
+            height: parent.height
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
 
             clip: true
 
-            height: parent.height
+            model: _dbTableNamesModel
 
-            model: ListModel{
-                ListElement{    category_name: "KITCHEN"        }
-                ListElement{    category_name: "PLUMMING"       }
-                ListElement{    category_name: "ELECTRIC"       }
-                ListElement{    category_name: "HARDWARE"       }
-                ListElement{    category_name: "BATHROOM"       }
-                ListElement{    category_name: "BASEMENT"       }
-                ListElement{    category_name: "HOME ADDITION"  }
-                ListElement{    category_name: "DECK"           }
-                ListElement{    category_name: "PAINTING"       }
-                ListElement{    category_name: "PREPARATION"    }
-                ListElement{    category_name: "MECHANICAL"     }
-                ListElement{    category_name: "FLOORING"       }
-                ListElement{    category_name: "MASINORY"       }
-                ListElement{    category_name: "OTHERS"         }
+            delegate: Cards.CommonCard {
+                category_name: model.table_name
             }
-
-            delegate: Cards.CommonCard{}
         }
     }
 }

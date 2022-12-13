@@ -5,5 +5,6 @@
         <file>Components/Cards/Kitchen.qml</file>
         <file>Components/Cards/SingleItem.qml</file>
         <file>Components/Cards/CommonCard.qml</file>
+        <file>Components/BarRight.qml</file>
     </qresource>
 </RCC>

@@ -1,26 +1,53 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.4
 
+/*
+* parameters: item_name
+*/
+
 Rectangle{
     color: "transparent"
     width: parent.width
     height: 30
 
-    property double left_ratio_to_whole: 0.7
+    //parent parameter
+    property string item_name: "no name"
+    property string cost: "0"
+    property string currency_sign: "$"
+
+    property double left_ratio_to_whole: 0.8
 
     Rectangle{
         width: parent.width * left_ratio_to_whole
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.leftMargin: parent.width * 0.1
+        anchors.leftMargin: parent.width * 0.05
         color: "transparent"
 
         Text{
-            anchors.fill: parent
+            id: text_name
+            width: parent.width * 0.84
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
             color: "#FFFFFF"
-            text: item_name
+            text: item_name         // @@@@@@@@@@@@@@@
             verticalAlignment: Text.AlignVCenter
+            font.pixelSize: 18
+            font.bold: true
+        }
+
+        Text {
+            id: text_cost
+            width: parent.width * 0.16
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: text_name.right
+            color: "#FFFFFF"
+            text: cost + currency_sign
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignRight
             font.pixelSize: 18
             font.bold: true
         }
@@ -43,6 +70,7 @@ Rectangle{
             anchors.rightMargin: 2
             color: "#000000"
             verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignRight
             font.pixelSize: 20
             font.bold: true
             clip: true

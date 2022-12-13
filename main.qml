@@ -4,7 +4,7 @@ import QtQuick.Window 2.15
 import "Components" as Components
 
 Window {
-    width: 1024
+    width: 1160
     height: 768
     visible: true
     title: qsTr("AAP v0.1")
@@ -21,7 +21,7 @@ Window {
             anchors.left: parent.left
             color: "#898989"
 
-            Components.BarLeft{
+            Components.BarLeft {
                 anchors.fill: parent
             }
         }
@@ -33,6 +33,10 @@ Window {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             color: "#EEEEEE"
+
+            Components.BarRight {
+                anchors.fill: parent
+            }
         }
     }
 }

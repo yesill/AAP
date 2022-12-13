@@ -2,18 +2,28 @@ import QtQuick 2.15
 import QtQuick.Controls 2.4
 
 
+/*
+* parameters: category_name
+*/
+
 Rectangle{
     id: mainCardContainer
-    width: parent.width
-    height: 300
-    //height: singleItemListView.height
+    width: parent.width // a problem here, parent equals null!
+
+    //height: text_category_name.height * 1.2
+    height: {
+        if (text_category_name.height * 1.2 >= 44 * singleItemListView.count){
+            text_category_name.height * 1.2
+        } else {
+            44 * singleItemListView.count
+        }
+    }
     color: "transparent"
 
-    // if category_name == "KITCHEN" do this ->
-    // if category_name == "PLUMMING" do this ->
+    property string category_name: "TableName"
 
     Rectangle{
-        id: backgroundRect
+        id: blueRectangle
         anchors.fill: parent
         anchors.leftMargin: parent.width * 0.1
         color: "transparent"
@@ -39,14 +49,19 @@ Rectangle{
             color: parent.color
 
             Text{
+                id: text_category_name
                 anchors.centerIn: parent
                 color: "#FFFFFF"
-                text: category_name
+                text: category_name     // @@@@@@@@
                 width: 1
                 wrapMode: Text.WrapAnywhere
                 font.pixelSize: 22
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
+                onTextChanged: {
+                    _dbModel.getData(text_category_name.text)
+                    //how many rows?
+                }
             }
         }
 
@@ -67,21 +82,12 @@ Rectangle{
 
                 height: contentHeight
 
-                model: ListModel{
-                    ListElement{    item_name: "CABINET"                }
-                    ListElement{    item_name: "COUNTERTOP-C"           }
-                    ListElement{    item_name: "COUNTERTOP-A"           }
-                    ListElement{    item_name: "KITCHEN LABOR"          }
-                    ListElement{    item_name: "BASHSPASH TILE"         }
-                    ListElement{    item_name: "BASHSPASH TILE LABOR"   }
-                    ListElement{    item_name: "SINK"                   }
-                    /*ListElement{    item_name: "FAUSET"                 }
-                    ListElement{    item_name: "UNDER CABINET LIGHT"    }
-                    ListElement{    item_name: "GENERAL PLUMING"        }
-                    ListElement{    item_name: "GENERAL ELECTRIC"       }*/
-                }
+                model: _dbModel
 
-                delegate: SingleItem{}
+                delegate: SingleItem{
+                    item_name: model.name
+                    cost: model.cost
+                }
             }
         }
     }

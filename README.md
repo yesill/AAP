@@ -1,4 +1,3 @@
-# UNDER DEVELOPMENT
-# v0.1
-# AAP
+# - UNDER DEVELOPMENT - 
+# AAP v0.4
 AAP Inventory Management and Cost Calculation Tool

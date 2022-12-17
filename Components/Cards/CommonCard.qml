@@ -12,6 +12,7 @@ Rectangle{
 
     //height: text_category_name.height * 1.2
     height: {
+        // 44 denem yanilma yoluyla buldugum bir pixel degeri
         if (text_category_name.height * 1.2 >= 44 * singleItemListView.count){
             text_category_name.height * 1.2
         } else {
@@ -21,6 +22,7 @@ Rectangle{
     color: "transparent"
 
     property string category_name: "TableName"
+    property string model_query_category_name
 
     Rectangle{
         id: blueRectangle
@@ -59,7 +61,8 @@ Rectangle{
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
                 onTextChanged: {
-                    _dbModel.getData(text_category_name.text)
+                    model_query_category_name = text_category_name.text
+                    _dbModel.getData(model_query_category_name)
                     //how many rows?
                 }
             }
@@ -85,6 +88,8 @@ Rectangle{
                 model: _dbModel
 
                 delegate: SingleItem{
+                    model_category_name: model_query_category_name
+                    row_number: model.index
                     item_name: model.name
                     cost: model.cost
                 }

@@ -3,11 +3,14 @@ import QtQuick.Controls 2.4
 import QtQuick.Window 2.15
 import "Components" as Components
 
-Window {
+ApplicationWindow {
     width: 1160
     height: 768
     visible: true
-    title: qsTr("AAP v0.1")
+    title: qsTr("AAP v0.6")
+
+    minimumWidth: 1160
+    minimumHeight: 768
 
     Rectangle{
         id: mainContainer

@@ -14,6 +14,8 @@ Rectangle{
     property string item_name: "no name"
     property string cost: "0"
     property string currency_sign: "$"
+    property string model_category_name
+    property int row_number
 
     property double left_ratio_to_whole: 0.8
 
@@ -45,7 +47,7 @@ Rectangle{
             anchors.bottom: parent.bottom
             anchors.left: text_name.right
             color: "#FFFFFF"
-            text: cost + currency_sign
+            text: cost + currency_sign      // @@@@@@@@@@@@@@@
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
             font.pixelSize: 18
@@ -65,6 +67,7 @@ Rectangle{
         color: "#FFFFFF"
 
         TextInput{
+            id: text_number_of_items
             anchors.fill: parent
             anchors.leftMargin: 2
             anchors.rightMargin: 2
@@ -74,6 +77,12 @@ Rectangle{
             font.pixelSize: 20
             font.bold: true
             clip: true
+
+            onTextChanged: {
+                // emit signal
+                _dbModel.calculatePrice(model_category_name, row_number, cost, text)
+                //_dbModel.numberOfItemsChangedBasic(text, cost)
+            }
         }
 
     }

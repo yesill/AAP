@@ -2,9 +2,9 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Components/BarLeft.qml</file>
-        <file>Components/Cards/Kitchen.qml</file>
         <file>Components/Cards/SingleItem.qml</file>
         <file>Components/Cards/CommonCard.qml</file>
         <file>Components/BarRight.qml</file>
+        <file>Components/TextPrice.qml</file>
     </qresource>
 </RCC>
